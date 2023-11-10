@@ -23,6 +23,10 @@ def run_speedtest():
             s.results.share()
 
             results_dict = s.results.dict()
+            
+            # Convert download and upload speeds to Mbps, round to 2 decimal places, convert to string and append " Mbps"
+            results_dict['download'] = str(round(results_dict['download'] / 10**6, 2)) + " Mbps"  # Convert from bits per second to Mbps
+            results_dict['upload'] = str(round(results_dict['upload'] / 10**6, 2)) + " Mbps"  # Convert from bits per second to Mbps
 
             # Update the cache
             cache['last_result'] = results_dict
